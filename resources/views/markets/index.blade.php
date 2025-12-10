@@ -3,26 +3,47 @@
 @section('title', 'Markets')
 
 @section('content')
-<div class="p-8">
-    <div class="flex items-center justify-between mb-6">
-        <h2 class="text-2xl font-semibold">Markets</h2>
+<div class="max-w-4xl mx-auto mt-10 bg-white p-8 rounded shadow">
+    <h1 class="text-3xl font-bold mb-6">Markets</h1>
+    <div class="mb-4 flex justify-between items-center">
+        <input type="text" class="border rounded px-3 py-2 w-64" placeholder="Search markets...">
+        <span class="text-gray-500">Last updated: 2s ago</span>
     </div>
-
-    <div class="grid grid-cols-3 gap-6">
-        @foreach($markets as $m)
-            <a href="{{ route('markets.show', ['symbol' => $m['symbol'] ?? $m['id'] ?? 'BTC']) }}" class="block p-4 bg-white rounded-lg shadow hover:shadow-md border border-gray-100">
-                <div class="flex items-center justify-between">
-                    <div>
-                        <div class="text-lg font-medium">{{ $m['name'] ?? ($m['symbol'] ?? 'Unknown') }}</div>
-                        <div class="text-sm text-gray-500">{{ strtoupper($m['symbol'] ?? ($m['id'] ?? '')) }}</div>
-                    </div>
-                    <div class="text-right">
-                        <div class="text-lg">${{ number_format($m['current_price'] ?? ($m['price'] ?? 0), 2) }}</div>
-                        <div class="text-sm {{ (isset($m['price_change_percentage_24h']) && $m['price_change_percentage_24h'] >= 0) ? 'text-green-600' : 'text-red-600' }}">{{ isset($m['price_change_percentage_24h']) ? $m['price_change_percentage_24h'] . '%' : '' }}</div>
-                    </div>
-                </div>
-            </a>
-        @endforeach
-    </div>
+    <table class="w-full text-sm bg-white rounded-lg shadow">
+        <thead class="bg-gray-100">
+            <tr>
+                <th class="py-2 px-4 text-left">Pair</th>
+                <th class="py-2 px-4 text-right">Last Price</th>
+                <th class="py-2 px-4 text-right">24h Change</th>
+                <th class="py-2 px-4 text-right">24h Volume</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="py-2 px-4 font-semibold">BTC/USDT</td>
+                <td class="py-2 px-4 text-right">$42,100.00</td>
+                <td class="py-2 px-4 text-right text-green-600">+2.15%</td>
+                <td class="py-2 px-4 text-right">1,234 BTC</td>
+            </tr>
+            <tr>
+                <td class="py-2 px-4 font-semibold">ETH/USDT</td>
+                <td class="py-2 px-4 text-right">$2,350.50</td>
+                <td class="py-2 px-4 text-right text-red-600">-0.87%</td>
+                <td class="py-2 px-4 text-right">8,900 ETH</td>
+            </tr>
+            <tr>
+                <td class="py-2 px-4 font-semibold">SOL/USDT</td>
+                <td class="py-2 px-4 text-right">$98.20</td>
+                <td class="py-2 px-4 text-right text-green-600">+5.02%</td>
+                <td class="py-2 px-4 text-right">32,000 SOL</td>
+            </tr>
+            <tr>
+                <td class="py-2 px-4 font-semibold">XRP/USDT</td>
+                <td class="py-2 px-4 text-right">$0.62</td>
+                <td class="py-2 px-4 text-right text-green-600">+1.10%</td>
+                <td class="py-2 px-4 text-right">120,000,000 XRP</td>
+            </tr>
+        </tbody>
+    </table>
 </div>
 @endsection

@@ -37,7 +37,7 @@
         <div class="bg-white rounded-xl p-6 shadow-sm border border-gray-200">
             <div class="text-gray-500 text-sm mb-1">Total Balance</div>
             <div class="text-2xl text-gray-900 mb-2">
-                ${{ number_format($totalPortfolioValue, 2) }}
+                ${{ number_format($user->balance ?? $totalPortfolioValue, 2) }}
             </div>
             <div class="flex items-center gap-1 text-sm {{ $portfolioChange24h >= 0 ? 'text-green-600' : 'text-red-600' }}">
                 <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
@@ -154,7 +154,7 @@
             <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
                 <h2 class="text-lg text-gray-900 mb-4">Quick Actions</h2>
                 <div class="space-y-2">
-                    <a href="{{ route('hacked.spot') }}" class="block w-full bg-green-500 text-white py-3 rounded-lg text-center hover:bg-green-600 transition-colors">
+                    <a href="{{ route('wallet.deposit') }}" class="block w-full bg-green-500 text-white py-3 rounded-lg text-center hover:bg-green-600 transition-colors">
                         💰 Deposit
                     </a>
                     <a href="{{ route('hacked.spot') }}" class="block w-full bg-blue-500 text-white py-3 rounded-lg text-center hover:bg-blue-600 transition-colors">

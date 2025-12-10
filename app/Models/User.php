@@ -33,6 +33,7 @@ class User extends Authenticatable
         'two_factor_enabled',
         'last_login_at',
         'last_login_ip',
+        'balance',
     ];
 
     /**
@@ -57,6 +58,7 @@ class User extends Authenticatable
         'date_of_birth' => 'date',
         'two_factor_enabled' => 'boolean',
         'last_login_at' => 'datetime',
+        'balance' => 'decimal:8',
     ];
 
     /**

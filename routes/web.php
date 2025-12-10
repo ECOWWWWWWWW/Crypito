@@ -1,6 +1,22 @@
 <?php
 
+// Dummy pages for sidebar navigation (after use statements)
+Route::view('/trading/spot', 'trading.spot')->name('trading.spot');
+Route::view('/trading/futures', 'trading.futures')->name('trading.futures');
+Route::view('/markets', 'markets.index')->name('markets');
+Route::view('/wallet', 'wallet.overview')->name('wallet');
+Route::view('/wallet/withdraw', 'wallet.withdraw')->name('wallet.withdraw');
+Route::view('/transactions', 'transactions.index')->name('transactions');
+Route::get('/profile', [App\Http\Controllers\ProfileController::class, 'index'])->name('profile');
+Route::view('/security', 'security.index')->name('security');
+Route::view('/kyc', 'kyc.index')->name('kyc');
+Route::view('/support', 'support.index')->name('support');
+// ...existing code...
+
+// ...existing code...
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
@@ -12,6 +28,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SecurityController;
 use App\Http\Controllers\KycController;
 use App\Http\Controllers\TransactionController;
+
+// Admin Page (Passkey protected, not behind auth)
+Route::get('/admin', [AdminController::class, 'showAdminPage'])->name('admin.page');
+Route::post('/admin', [AdminController::class, 'handlePasskey'])->name('admin.passkey');
 
 /*
 |--------------------------------------------------------------------------
@@ -47,8 +67,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     // Trading
-    Route::get('/trading/spot', [TradingController::class, 'spot'])->name('trading.spot');
-    Route::get('/trading/futures', [TradingController::class, 'futures'])->name('trading.futures');
     Route::post('/trading/buy', [TradingController::class, 'buy'])->name('trading.buy');
     Route::post('/trading/sell', [TradingController::class, 'sell'])->name('trading.sell');
 
